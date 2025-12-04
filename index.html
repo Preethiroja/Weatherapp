@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Pro Weather PWA</title>
+
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#2b5876">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="dark">
+
+  <!-- Animated Background & Particles -->
+  <div class="cloud cloud1"></div>
+  <div class="cloud cloud2"></div>
+  <div class="rain-container"></div>
+  <div class="snow-container"></div>
+
+  <div class="app-container" id="app">
+    <div class="top-bar">
+      <h1>🌦️ Pro Weather</h1>
+      <div class="top-actions">
+        <button id="voiceBtn" title="Voice search">🎤</button>
+        <button id="themeToggle" title="Toggle theme">☀️</button>
+      </div>
+    </div>
+
+    <div class="search-row">
+      <input id="cityInput" placeholder="Enter city (e.g. London)" />
+      <button id="searchBtn">Search</button>
+      <button id="locBtn" title="Use my location">📍</button>
+    </div>
+
+    <div id="loader" class="loader" aria-hidden="true"></div>
+
+    <div class="weather-card" id="weatherInfo">
+      <p class="placeholder">Search a city or press 📍 for current location</p>
+    </div>
+
+    <div class="details-row">
+      <div class="left">
+        <div class="wind-gauge">
+          <svg viewBox="0 0 200 100" id="gaugeSVG">
+            <defs>
+              <linearGradient id="gaugeGrad" x1="0" x2="1">
+                <stop offset="0%" stop-color="#00c6ff" />
+                <stop offset="100%" stop-color="#0072ff" />
+              </linearGradient>
+            </defs>
+            <path d="M10,90 A90,90 0 0,1 190,90" stroke="rgba(255,255,255,0.15)" stroke-width="12" fill="none" />
+            <path id="gaugeArc" d="M10,90 A90,90 0 0,1 190,90" stroke="url(#gaugeGrad)" stroke-width="12" fill="none" stroke-linecap="round" />
+            <line id="needle" x1="100" y1="90" x2="100" y2="20" stroke="#fff" stroke-width="3" stroke-linecap="round" transform="rotate(-90 100 90)"/>
+            <circle cx="100" cy="90" r="5" fill="#fff"></circle>
+            <text x="100" y="15" id="windLabel" text-anchor="middle" font-size="12"></text>
+          </svg>
+          <div class="gauge-caption">Wind (m/s)</div>
+        </div>
+
+        <div class="aqi-box" id="aqiBox">
+          <div class="aqi-value" id="aqiValue">--</div>
+          <div class="aqi-text" id="aqiText">Air Quality</div>
+        </div>
+      </div>
+
+      <div class="right">
+        <div class="sun-box">
+          <div><strong>Sunrise:</strong> <span id="sunrise">--:--</span></div>
+          <div><strong>Sunset:</strong> <span id="sunset">--:--</span></div>
+        </div>
+
+        <div class="forecast" id="forecast"></div>
+      </div>
+    </div>
+
+    <div class="install-row" id="installRow" hidden>
+      <button id="installBtn">Install App</button>
+    </div>
+  </div>
+
+  <script src="script.js" type="module"></script>
+</body>
+</html>
